@@ -8,7 +8,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.productapp.model.service.ProductService;
 import com.productapp.web.entities.Product;
@@ -17,9 +16,9 @@ import com.productapp.web.entities.Product;
 public class ProductController {
 	
 	private ProductService productService;
-
+	
 	@Autowired
-	public void setProductService(ProductService productService) {
+	public ProductController(ProductService productService) {
 		this.productService = productService;
 	}
 	
@@ -49,7 +48,7 @@ public class ProductController {
 		
 		Long prodId = (product.getProductId());			// to differentiate the update and the add method of products
 		
-		if(prodId == null) {
+		if(prodId == 0) {
 			productService.addProduct(product);
 		}
 		

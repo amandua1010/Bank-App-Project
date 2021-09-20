@@ -28,20 +28,27 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Product addProduct(Product product) {
-		return productDao.save(product);
+		productDao.save(product);
+		return product; 
 	}
 
 	@Override
 	public void deleteProduct(long id) {
-		Product deleteProduct = getProductById(id);
-		productDao.delete(deleteProduct);
+		Product deleteProd = getProductById(id);
+		productDao.delete(deleteProd);
 	}
 
 	@Override
 	public void updateProduct(long id, Product product) {
-		Product updateProduct = getProductById(id);
-		updateProduct.setProductPrice(product.getProductPrice());
-		productDao.save(updateProduct);
+		
+		Product updateProd = getProductById(id);
+		
+		updateProd.setProductPrice(product.getProductPrice());
+		updateProd.setProductCategory(product.getProductCategory());
+		updateProd.setProductDiscount(product.getProductDiscount());
+		updateProd.setProductQuantity(product.getProductQuantity());
+		
+		productDao.save(updateProd);
 	}
 	
 	@Override
